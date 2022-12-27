@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class TrapBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] bool IsEnabled = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public virtual void TrapBehavior() { }
 
-    public virtual void TrapBehavior()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        collision.TryGetComponent(typeof(PlayerController), out Component player);
 
+        if (player is null)
+            return;
+
+        //TODO: Connect with player? Or GameManager?
     }
 }

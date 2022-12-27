@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         levelController = GetComponent<LevelController>();
-        levelState = LevelStates.Started;
+        levelState = levelController.LevelState;
     }
 
     // Update is called once per frame
@@ -20,8 +20,4 @@ public class GameManager : Singleton<GameManager>
         
     }
 
-    public void Test()
-    {
-        Debug.Log("Message");
-    }
 }

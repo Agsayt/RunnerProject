@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelController : MonoBehaviour
+public class LevelController : Singleton<LevelController>
 {
     // Start is called before the first frame update
     [SerializeField] GameObject[] Traps;
+    [SerializeField] public LevelStates LevelState { get; private set; }  
+
+    //TODO: Think about global level events
 
     void Start()
     {
-        Traps = GetComponents<Trap>();
+        LevelState = LevelStates.Started;
+        Traps = GetComponents<GameObject>();
     }
 
     // Update is called once per frame
