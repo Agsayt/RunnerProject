@@ -15,4 +15,10 @@ public class Trap : TrapBase
     {
         
     }
+
+    public override void TrapBehavior()
+    {
+        base.TrapBehavior();
+
+    }
 }

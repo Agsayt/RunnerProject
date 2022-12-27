@@ -15,4 +15,9 @@ public class TrapBase : MonoBehaviour
     {
         
     }
+
+    public virtual void TrapBehavior()
+    {
+
+    }
 }
