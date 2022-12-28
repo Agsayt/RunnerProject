@@ -8,4 +8,5 @@ public enum LevelStates
     InPause,
     Started,
     Finished,
+    Stopped,
 }

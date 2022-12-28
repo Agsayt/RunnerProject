@@ -5,8 +5,7 @@ using UnityEngine;
 public class TrapBase : MonoBehaviour
 {
     [SerializeField] bool IsEnabled = false;
-
-    public virtual void TrapBehavior() { }
+    [SerializeField] bool IsDestructable = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,5 +15,7 @@ public class TrapBase : MonoBehaviour
             return;
 
         //TODO: Connect with player? Or GameManager?
+
+        GameManager.Instance.DeathInitiation();
     }
 }

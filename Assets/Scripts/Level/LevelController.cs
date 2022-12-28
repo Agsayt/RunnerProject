@@ -6,7 +6,7 @@ public class LevelController : Singleton<LevelController>
 {
     // Start is called before the first frame update
     [SerializeField] GameObject[] Traps;
-    [SerializeField] public LevelStates LevelState { get; private set; }  
+    [SerializeField] public LevelStates LevelState;
 
     //TODO: Think about global level events
 
