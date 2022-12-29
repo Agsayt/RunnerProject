@@ -440,7 +440,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &787456794
 BoxCollider2D:
@@ -517,6 +517,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   jump: 2
+  Dashpower: 1000
+  timeLockDask: 2
 --- !u!1 &921829388
 GameObject:
   m_ObjectHideFlags: 3
