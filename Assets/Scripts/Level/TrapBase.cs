@@ -14,8 +14,7 @@ public class TrapBase : MonoBehaviour
         if (player is null)
             return;
 
-        //TODO: Connect with player? Or GameManager?
-
-        GameManager.Instance.DeathInitiation();
+        //TODO: Connect with player
+        //player.Die();
     }
 }

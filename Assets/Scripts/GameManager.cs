@@ -22,10 +22,4 @@ public class GameManager : Singleton<GameManager>
     {
         
     }
-
-    internal void DeathInitiation()
-    {
-        levelController.LevelState = LevelStates.Stopped;
-    }
-
 }
