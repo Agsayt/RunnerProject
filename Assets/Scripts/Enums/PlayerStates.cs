@@ -8,7 +8,5 @@ public enum PlayerStates
    Jump,
    Dash,
    Slide,
-   Dive, //Нажатие подката в прыжке
-   Die,
-   Life
+   Dive
 }
