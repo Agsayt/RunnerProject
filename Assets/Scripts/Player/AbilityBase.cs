@@ -2,10 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityBase : MonoBehaviour
+public class AbilityBase : ScriptableObject
 {
-    public virtual void CheckAbility(float speed, float jump, float dashPower, float timeLockDash, GameObject gm)
-    {
+    public new string name;
+    float cooldownTime;
+    float activeTime;
 
+
+    enum AbilityState
+    {
+        ready,
+        active,
+        cooldown
     }
+
+    public virtual void Activate(GameObject gameObject) { }
 }

@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
+[CreateAssetMenu]
 public class MovePlayer : AbilityBase
 {
-    public static void MovePl(float speed, Transform transform)
+    public float movementSpeed;
+
+    public override void Activate(GameObject gameObject)
     {
+        base.Activate(gameObject);
         float movement = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(movement, 0) * speed * Time.deltaTime;
-        return;
-    }
+        gameObject.transform.position += new Vector3(movement, 0) * movementSpeed * Time.deltaTime;
+    }   
 }

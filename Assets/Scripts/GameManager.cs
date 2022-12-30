@@ -15,6 +15,13 @@ public class GameManager : Singleton<GameManager>
     {
         levelController = GetComponent<LevelController>();
         levelState = levelController.LevelState;
+
+        levelController.levelEvent.AddListener(OnLevel);
+    }
+
+    private void OnLevel()
+    {
+        throw new NotImplementedException();
     }
 
     // Update is called once per frame

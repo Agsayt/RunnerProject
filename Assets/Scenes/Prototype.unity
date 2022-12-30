@@ -285,6 +285,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Traps: []
   LevelState: 0
+  levelEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,8 +520,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   jump: 2
-  Dashpower: 1000
-  timeLockDask: 2
+  dashPower: 5
+  timeLockDash: 2
+  abilities:
+  - {fileID: 11400000, guid: 7e436947914d8a74cabc63bbd9f24340, type: 2}
+  - {fileID: 11400000, guid: 1d3c51d3b4661f346aebb40141ed24e2, type: 2}
 --- !u!1 &921829388
 GameObject:
   m_ObjectHideFlags: 3

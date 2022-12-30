@@ -17,12 +17,10 @@ public class PlayerController : MonoBehaviour
     private bool die;
     private bool alive;
 
-    [SerializeField] List<AbilityBase> abilities;
+    [SerializeField] AbilityBase[] abilities;
     
     void Start()
     {
-        Dash dash = new Dash();
-        abilities.Add(dash);
         rb = GetComponent<Rigidbody2D>();
     }
     
@@ -30,7 +28,8 @@ public class PlayerController : MonoBehaviour
     {
         foreach (var ability in abilities)
         {
-            ability.CheckAbility(speed, jump, dashPower, timeLockDash, gameObject);
+            //ability.CheckAbility(speed, jump, dashPower, timeLockDash, gameObject);
+            ability.Activate(gameObject);
         }
     }
     
