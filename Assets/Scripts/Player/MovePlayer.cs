@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "Movement", menuName = "PlayerAbilities/Movement", order = 1)]
 public class MovePlayer : AbilityBase
 {
     public float movementSpeed;

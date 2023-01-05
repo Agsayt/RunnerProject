@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -14,14 +16,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float dashPower = 5;
     [SerializeField] float timeLockDash = 2;
 
-    private bool die;
-    private bool alive;
+    private bool isAlive;
 
-    [SerializeField] AbilityBase[] abilities;
+    [SerializeField] public List<AbilityBase> abilities;
+    public UnityEvent dieEvent;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        isAlive = true;
     }
     
     void Update()
@@ -32,7 +35,10 @@ public class PlayerController : MonoBehaviour
             ability.Activate(gameObject);
         }
     }
-    
 
-
+    internal void Die()
+    {
+        isAlive = false;
+        dieEvent.Invoke();
+    }
 }

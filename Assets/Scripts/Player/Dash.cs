@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "Dash", menuName = "PlayerAbilities/Dash", order = 1)]
 public class Dash : AbilityBase
 {
     private bool lockDash = false;

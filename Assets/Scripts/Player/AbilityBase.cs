@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class AbilityBase : ScriptableObject
 {
-    public new string name;
-    float cooldownTime;
-    float activeTime;
+    public float cooldownTime = 0;
+    public float activeTime = 0;
+    public AbilityState State = AbilityState.ready;
 
-
-    enum AbilityState
+    public enum AbilityState
     {
         ready,
         active,
