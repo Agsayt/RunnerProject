@@ -10,13 +10,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] PlayerController playerController;
     [SerializeField] LevelStates levelState { get; set; }
     public EventZone latestCheckpoint;
-    
+
 
     void Start()
     {
         levelController = GetComponent<LevelController>();
         levelState = levelController.LevelState;
         Debug.Log("Manager Registered");
+
         playerController.dieEvent.AddListener(OnPlayerDie);
         levelController.levelEvent.AddListener(OnLevel);
     }
@@ -28,19 +29,16 @@ public class GameManager : Singleton<GameManager>
 
     private void OnRestart()
     {
-        Debug.Log("Restart entry");
-        Debug.Log("pContrl: " + playerController);
-
         if (latestCheckpoint is null)
             return;
 
         Time.timeScale = 1f;
-        var playerTransform = playerController.gameObject.transform;
-        var playerPosition = playerTransform.position;
+        var playerRenderer = playerController.GetComponentInChildren<SpriteRenderer>();
+        var newX = latestCheckpoint.transform.position.x + (latestCheckpoint.GetComponent<SpriteRenderer>().bounds.size.x / 2 - playerRenderer.bounds.size.x / 2);
+        var newY = latestCheckpoint.transform.position.y + playerRenderer.bounds.size.y;
 
-        var newX = latestCheckpoint.transform.position.x + (latestCheckpoint.GetComponent<SpriteRenderer>().bounds.size.x / 2 - playerController.GetComponent<SpriteRenderer>().bounds.size.x / 2);
 
-        playerPosition = new Vector2(newX, 2);
+        playerController.gameObject.transform.position = new Vector3(newX, newY, 0); 
     }
 
     private void OnLevel()
@@ -49,7 +47,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
