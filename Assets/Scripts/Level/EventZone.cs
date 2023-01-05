@@ -16,8 +16,8 @@ public class EventZone : MonoBehaviour
         Checkpoint,
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         collision.transform.TryGetComponent(typeof(PlayerController), out Component component);
         if (component is null)
