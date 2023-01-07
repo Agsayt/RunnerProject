@@ -32,13 +32,16 @@ public class GameManager : Singleton<GameManager>
         if (latestCheckpoint is null)
             return;
 
-        Time.timeScale = 1f;
+
         var playerRenderer = playerController.GetComponentInChildren<SpriteRenderer>();
-        var newX = latestCheckpoint.transform.position.x + (latestCheckpoint.GetComponent<SpriteRenderer>().bounds.size.x / 2 - playerRenderer.bounds.size.x / 2);
-        var newY = latestCheckpoint.transform.position.y + playerRenderer.bounds.size.y;
+        var newX = latestCheckpoint.transform.position.x + (latestCheckpoint.GetComponent<SpriteRenderer>().bounds.size.x / 2 - playerRenderer.bounds.size.x - playerRenderer.bounds.size.x / 2);
+        var newY = latestCheckpoint.transform.position.y - latestCheckpoint.GetComponent<SpriteRenderer>().bounds.size.y + playerRenderer.bounds.size.y;
 
 
-        playerController.gameObject.transform.position = new Vector3(newX, newY, 0); 
+        playerController.gameObject.transform.position = new Vector3(newX, newY, 0);
+        Time.timeScale = 1f;
+
+
     }
 
     private void OnLevel()
