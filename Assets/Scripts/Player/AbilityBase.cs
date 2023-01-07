@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 
 public class AbilityBase : ScriptableObject
 {
-    public float cooldownTime = 3;
-    public float activeTime = 3;
+    
     public AbilityState state = AbilityState.ready;
-
+    public float cooldownTime = 5;
+    public float activeTime = 0;    
+    
     public enum AbilityState
     {
         ready,
