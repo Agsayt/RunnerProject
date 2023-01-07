@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Jump", menuName = "PlayerAbilities/Jump", order = 1)]
 public class Jump : AbilityBase
 {
-    public float jumpForce = 10;
+    public float jumpForce;
 
     public override void Activate(GameObject gameObject)
     {

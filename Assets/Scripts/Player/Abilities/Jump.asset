@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownTime: 0
   activeTime: 0
+  state: 0
   jumpForce: 4

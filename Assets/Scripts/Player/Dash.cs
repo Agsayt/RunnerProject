@@ -1,34 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [CreateAssetMenu(fileName = "Dash", menuName = "PlayerAbilities/Dash", order = 1)]
 public class Dash : AbilityBase
-{
-    private bool lockDash = false;
-    public float dashCooldown;
+{    
     public float dashPower;
+    private float thisCooldownTime;
+    private float thisActiveTime;
 
-    public override void Activate(GameObject gameObject)
+    public override async void Activate(GameObject gameObject)
     {
-        base.Activate(gameObject);
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !lockDash)
-            DashPl(dashCooldown, dashPower, gameObject.GetComponent<Rigidbody2D>());
-    }
-      
+        thisCooldownTime = cooldownTime;
+        thisActiveTime = activeTime;
 
-    private void DashPl(float timeLockDash, float dashPower, Rigidbody2D rb)
-    {
-        lockDash = true;
-        //Invoke("DashLock", timeLockDash);
-        if (Input.GetKey(KeyCode.RightArrow))
+        switch (state)
+        {
+            case AbilityState.ready:                
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    base.Activate(gameObject);
+                    state = AbilityState.active;
+                    DashPl(dashPower, gameObject.GetComponent<Rigidbody2D>());
+                }               
+                break;
+            case AbilityState.active:
+                if(thisActiveTime > 0)
+                    thisActiveTime -= Time.deltaTime;
+                else
+                    state = AbilityState.cooldown;
+                break;
+            case AbilityState.cooldown:
+                if (thisCooldownTime > 0)
+                    thisCooldownTime -= Time.deltaTime;
+                else
+                    state = AbilityState.ready;
+                break;
+        }                 
+    }      
+
+    private void DashPl(float dashPower, Rigidbody2D rb)
+    {        
+        if (Input.GetKey(KeyCode.RightArrow) )
             rb.AddForce(Vector2.right * dashPower);
-        else
-            rb.AddForce(Vector2.left * dashPower);
-    }
-
-    private void DashLock()
-    {
-        lockDash = false;
+        else if (Input.GetKey(KeyCode.LeftArrow))
+            rb.AddForce(Vector2.left * dashPower);                
     }
 }

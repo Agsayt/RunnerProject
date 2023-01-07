@@ -10,12 +10,6 @@ public class PlayerController : MonoBehaviour
 {
 
     Rigidbody2D rb;
-
-    [SerializeField] float speed = 1;
-    [SerializeField] float jump = 2;
-    [SerializeField] float dashPower = 5;
-    [SerializeField] float timeLockDash = 2;
-
     private bool isAlive;
 
     [SerializeField] public List<AbilityBase> abilities;
@@ -30,8 +24,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         foreach (var ability in abilities)
-        {
-            //ability.CheckAbility(speed, jump, dashPower, timeLockDash, gameObject);
+        {            
             ability.Activate(gameObject);
         }
     }
