@@ -10,10 +10,10 @@ public class Jump : AbilityBase
     private float jumpTime = 0;
     public float jumpControlTime = 0.7f;
 
-   // public bool onGround;
-   // public Transform groundCheck = ;
-   // public float checkRadius = 0.5f;
-   // public LayerMask Ground;
+    public bool onGround;
+    public Transform groundCheck;
+    public float checkRadius = 0.5f;
+    public LayerMask Ground;
 
     public override void Activate(GameObject gameObject)
     {
