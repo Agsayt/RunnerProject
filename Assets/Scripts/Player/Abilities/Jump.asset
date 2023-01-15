@@ -16,4 +16,6 @@ MonoBehaviour:
   cooldownTime: 0
   activeTime: 0
   jumpForce: 0.2
-  jumpControlTime: 20
+  jumpControlTime: 2
+  onGroind: 1
+  radius: 0.3

@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 public class Dash : AbilityBase
 {    
     public float dashPower;
-    private float coolDown;    
+    private float coolDown = 5;
 
     public override async void Activate(GameObject gameObject)
     {        
