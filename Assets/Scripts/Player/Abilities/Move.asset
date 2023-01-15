@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13d557d9a923d74eb9203a1b0f3ff1f, type: 3}
   m_Name: Move
   m_EditorClassIdentifier: 
+  state: 0
   cooldownTime: 0
   activeTime: 0
-  State: 0
-  movementSpeed: 3
+  direction: 3
+  movementSpeed: 0.001
