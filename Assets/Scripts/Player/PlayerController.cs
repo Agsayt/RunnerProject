@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private bool isAlive;
 
     [SerializeField] public List<AbilityBase> abilities;
+    public PlayerStates playerStates;
     public UnityEvent dieEvent;
     
     void Start()
@@ -23,15 +24,23 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        foreach (var ability in abilities)
-        {            
-            ability.Activate(gameObject);
+        if (isAlive)
+        {
+            foreach (var ability in abilities)
+            {            
+                ability.Activate(gameObject);
+            }
         }
     }
 
-    internal void Die()
+    public bool IsPlayerAlive() => isAlive;
+
+
+    public void Die()
     {
         isAlive = false;
         dieEvent.Invoke();
     }
+
+    public void PlayerRevive() => isAlive = true;
 }
