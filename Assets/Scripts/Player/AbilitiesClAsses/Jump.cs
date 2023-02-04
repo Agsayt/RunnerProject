@@ -16,33 +16,42 @@ public class Jump : AbilityBase
     public LayerMask layerMask;
     private GameObject sender;
 
+    private void Awake()
+    {
+        
+    }
+
     public override void Activate(GameObject gameObject)
     {
         base.Activate(gameObject);
         var rb = gameObject.GetComponent<Rigidbody2D>();
         sender = gameObject;
-
-        jumpTimeCounter = jumpTimeValue;
-        JumpPl(jumpForce, rb, jumpTime, jumpTimeCounter);
+        JumpAction(rb);
     }
 
-    public void JumpPl(float jumpForce, Rigidbody2D rb, float jumpTime, float jumpControlTime)
+    private void JumpAction(Rigidbody2D rb)
     {
-        onGround = checkGround();
-
-        if (Input.GetKey(KeyCode.Space) && onGround)
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-                rb.AddForce(Vector2.up * jumpForce / (jumpTime * 10));
-        }
 
-        if(Input.GetKey(KeyCode.Space))
-        {
-            if(jumpTimeCounter > 0)
+            if (Input.GetKeyDown(KeyCode.Space) && checkGround())
             {
-                rb.AddForce(Vector2.up * jumpForce / (jumpTime * 10));
-                jumpTimeCounter -= Time.deltaTime;
+                Debug.Log("First jump!");
+                jumpTimeCounter = jumpTimeValue;
+                rb.AddForce(Vector2.up * jumpForce );
             }
-        }
+
+            if (Input.GetKeyDown(KeyCode.Space) && )
+            {
+                if (jumpTimeCounter > 0)
+                {
+                    Debug.Log("Second jump!");
+
+                    rb.AddForce(Vector2.up * jumpForce);
+                    jumpTimeCounter -= Time.deltaTime;
+                }
+            }
+        }        
     }
 
     void OnDrawGizmos()
