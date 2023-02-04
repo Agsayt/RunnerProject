@@ -15,7 +15,11 @@ MonoBehaviour:
   state: 0
   cooldownTime: 0
   activeTime: 0
-  jumpForce: 0.2
-  jumpControlTime: 2
-  onGroind: 1
-  radius: 0.3
+  jumpForce: 200
+  jumpTimeValue: 200
+  onGround: 1
+  maxDistance: 0.1
+  boxSize: {x: 0.02, y: 0.0001, z: 1.93}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128

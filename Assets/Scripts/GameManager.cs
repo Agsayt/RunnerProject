@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager>
 
         playerController.gameObject.transform.position = new Vector3(newX, newY, 0);
         Time.timeScale = 1f;
-
+        playerController.PlayerRevive();
 
     }
 

@@ -15,5 +15,5 @@ MonoBehaviour:
   state: 0
   cooldownTime: 0
   activeTime: 0
-  direction: 3
-  movementSpeed: 0.001
+  direction: 2
+  movementSpeed: 0
