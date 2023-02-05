@@ -41,7 +41,7 @@ public class Jump : AbilityBase
                 rb.AddForce(Vector2.up * jumpForce );
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && )
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (jumpTimeCounter > 0)
                 {

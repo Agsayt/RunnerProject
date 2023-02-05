@@ -5,19 +5,29 @@ using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static MovePlayer;
 
 [CreateAssetMenu(fileName = "Dash", menuName = "PlayerAbilities/Dash", order = 1)]
 public class Dash : AbilityBase
 {    
     public float dashPower;
-    private float coolDown = 5;
+    public float coolDownTime = 3;
+    public float activeTime = 0;
+    private float coolDown;
+    DirectionState direction;
 
     public override async void Activate(GameObject gameObject)
-    {        
+    {
+        var playerController = gameObject.GetComponent<PlayerController>();
+        if (playerController is null)
+            return;
+        var movePlayer = (playerController.abilities.Find(x => x.name.Contains("Move")) as MovePlayer);
+        direction = movePlayer.direction;
+
         switch (state)
         {
             case AbilityState.ready:                
-                if (Input.GetKeyDown(KeyCode.LeftShift) && (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)))
+                if (Input.GetKeyDown(KeyCode.LeftShift) && (direction is DirectionState.right || direction is DirectionState.left))
                 {
                     base.Activate(gameObject);
                     state = AbilityState.active;
@@ -31,12 +41,12 @@ public class Dash : AbilityBase
                     state = AbilityState.cooldown;
                 break;
             case AbilityState.cooldown:
-                if (cooldownTime > 0)
-                    cooldownTime -= Time.deltaTime;
+                if (coolDownTime > 0)
+                    coolDownTime -= Time.deltaTime;
                 else
                 {
                     state = AbilityState.ready;
-                    cooldownTime = coolDown;
+                    coolDownTime = coolDown;
                 }
                 break;
         }
@@ -44,10 +54,10 @@ public class Dash : AbilityBase
 
     private void DashPl(float dashPower, Rigidbody2D rb)
     {
-        coolDown = cooldownTime;
-        if (Input.GetKey(KeyCode.RightArrow) )
+        coolDown = coolDownTime;
+        if (direction is DirectionState.right)
             rb.AddForce(Vector2.right * dashPower);
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (direction is DirectionState.left)
             rb.AddForce(Vector2.left * dashPower);                
     }
 }

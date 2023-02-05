@@ -7,8 +7,8 @@ public class AbilityBase : ScriptableObject
 {
     
     public AbilityState state = AbilityState.ready;
-    public float cooldownTime = 5;
-    public float activeTime = 0;    
+    private float coolDownTime;
+    private float activeTime;    
     
     public enum AbilityState
     {
