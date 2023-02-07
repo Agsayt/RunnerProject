@@ -11,9 +11,10 @@ using static MovePlayer;
 public class Dash : AbilityBase
 {    
     public float dashPower;
-    public float coolDownTime = 3;
+    public float cooldownTime = 3;
     public float activeTime = 0;
-    private float coolDown;
+    private float cooldown;
+    private float active;
     DirectionState direction;
 
     public override async void Activate(GameObject gameObject)
@@ -41,12 +42,15 @@ public class Dash : AbilityBase
                     state = AbilityState.cooldown;
                 break;
             case AbilityState.cooldown:
-                if (coolDownTime > 0)
-                    coolDownTime -= Time.deltaTime;
+                if (cooldownTime > 0)
+                {
+                    cooldownTime -= Time.deltaTime;
+                    activeTime = active;
+                }
                 else
                 {
                     state = AbilityState.ready;
-                    coolDownTime = coolDown;
+                    cooldownTime = cooldown;
                 }
                 break;
         }
@@ -54,7 +58,9 @@ public class Dash : AbilityBase
 
     private void DashPl(float dashPower, Rigidbody2D rb)
     {
-        coolDown = coolDownTime;
+        cooldown = cooldownTime;
+        active = activeTime;
+
         if (direction is DirectionState.right)
             rb.AddForce(Vector2.right * dashPower);
         else if (direction is DirectionState.left)
